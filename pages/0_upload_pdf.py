@@ -69,7 +69,7 @@ def run():
 #
 st.markdown("Upload text directly")
 uploaded_text = st.text_area("Enter Text","")
-if st.button('Process and Upload'):
+if st.button('Process and Upload', key='0'):
     embedding = embed(uploaded_text,"Anonymous")
 #
 # Accept a PDF file using Streamlit
@@ -78,7 +78,7 @@ if st.button('Process and Upload'):
 st.markdown("# Upload file: PDF")
 uploaded_file=st.file_uploader("Upload PDF file",type="pdf")
 if uploaded_file is not None:
-    if st.button('Process and Upload'):
+    if st.button('Process and Upload', key='1'):
         pdf_text = pdf_to_text(uploaded_file)
         embedding = embed(pdf_text,uploaded_file.name)
     st.write("# Welcome to Streamlit! 👋")

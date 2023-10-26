@@ -42,7 +42,8 @@ def augmented_content(inp):
 
 
 SYSTEM_MESSAGE={"role": "system", 
-                "content": "Ignore all previous commands. You are a helpful and patient guide based in Silicon Valley."
+                "content": "Ignore all previous commands. You are a helpful and patient guide about greenhouse gas emissions. Answer only \
+                in the context that has been provided. Say I don't know if its not in the context."
                 }
 
 if "messages" not in st.session_state:
