@@ -16,6 +16,7 @@ import streamlit as st
 import plotly.express as px
 import pandas as pd
 
+
 df = pd.read_excel("ghgp_data_by_year.xlsx")
 df.dropna(inplace=True) #in this dataset this removes all facilities that don't have data from every year(in the future make this just from 2016-2021 for Sentinel2)
 
@@ -26,26 +27,26 @@ df = df.reset_index(drop=True)
 
 df = df.sort_values(by="2021 Total reported direct emissions", ascending=False)
 
-size = df['2021 Total reported direct emissions'].to_list()
+facilities = df['Facility Id'].to_list()
 
-fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name='Facility Name', 
-                        zoom=3, size=size, color=size, color_continuous_scale=px.colors.diverging.RdYlGn_r,
-                        custom_data=['Facility Name', '2021 Total reported direct emissions','Latitude','Longitude'], 
-                        opacity=1, title="2021 GHG Emissions by Facility")
+facility = "1005310"
+facility = st.text_input(label="Facility Id", value = "1005310")
 
+if (int(facility) not in facilities):
+    st.caption("facility id entered is not a valid facility id!")
 
-fig.update_traces(
-    hovertemplate="<br>".join([
-        "<b>Facility Name: %{customdata[0]}",
-        "2021 Emissions: %{customdata[1]}</b>",
-        "Latitude: %{customdata[2]}",
-        "Longitude: %{customdata[3]}",
-    ])
-)
+else:
+    df_facility = df.loc[df['Facility Id'] == int(facility)]
 
+    emissions = []
+    years = []
+    for year in range(2011, 2022):
+        emissions.append(df_facility.iloc[0][str(year) + ' Total reported direct emissions'])
+        years.append(year)
+    
+    print(emissions)
+    print(years)
 
-
-
-fig.update_layout(mapbox_style="open-street-map")
-fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-st.plotly_chart(fig)
+    fig = px.bar(emissions, x=years, y=emissions, color=emissions, 
+                 color_continuous_scale=px.colors.diverging.RdYlGn_r)
+    st.plotly_chart(fig)

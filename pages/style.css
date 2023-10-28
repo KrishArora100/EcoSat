@@ -1,9 +1,0 @@
-table tr {
-    height: 100px;
-}
-
-table td, table th {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
