@@ -12,3 +12,4 @@ markdown
 markdown
 mistune
 openpyxl
+plotly
