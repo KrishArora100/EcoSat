@@ -17,7 +17,7 @@ import streamlit as st
 st.markdown("# Welcome to EcoSat")
 
 st.markdown("""
-            To access our AI Chatbot for information about GHG emissions and their dangers or about facility data, 
+            To access an AI Chatbot for information about GHG emissions and their dangers or about facility data, 
             navigate to "retreival augmented chat"\n
             To view a basic map of facilities in 2021, go to "facilities map"\n
             To view a more interactive, customizable map of facilities, go to "interactive facilities map"\n
