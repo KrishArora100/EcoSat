@@ -24,7 +24,7 @@ st.markdown("""
             To view specific trends of facilities, navigate to "emissions graphs"\n
             Please note that if you are not authorized to upload data into the AI model, that feature will be disabled\n
             Also please note that there is a maximum token limit to our chatbot of 4097 tokens. If you run into an error while chatting, 
-            click the rerun button found by clicking the three dots in the upper right corner. This will reset the app so you can chat again. 
+            click the 'clear cache' button found by clicking the three dots in the upper right corner. This will reset the app so you can chat again. 
             If there is still an error, try refreshing the app or trying at a later time\n
             For more information, ask the AI chatbot. Enjoy!
              """)

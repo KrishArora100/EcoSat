@@ -53,18 +53,20 @@ else:
     
     if y_range == 'dynamic':
         fig = px.bar(emissions, x=years, y=emissions, color=emissions, 
-                 color_continuous_scale=px.colors.diverging.RdYlGn_r,
-                labels={
+                     color_continuous_scale=px.colors.diverging.RdYlGn_r,
+                     labels={
                      "x": "Year",
                      "y": "Emissions(tons)",
-                 })
+                     })
     else:
         fig = px.bar(emissions, x=years, y=emissions, color=emissions, 
-                 color_continuous_scale=px.colors.diverging.RdYlGn_r,
-                labels={
+                     color_continuous_scale=px.colors.diverging.RdYlGn_r,
+                     labels={
                      "x": "Year",
                      "y": "Emissions(tons)",
-                 },
-                 range_y=[0,25000000]),
-        
+                     },
+                     range_y=[0,25000000])
+    
     st.plotly_chart(fig)
+        
+    
