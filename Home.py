@@ -60,9 +60,6 @@ df = df[0:int(num_facilities)]
 size = df[year + ' Total reported direct emissions'].to_list()
 
 
-
-print(year)
-
 fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name='Facility Name', 
                         zoom=3, size=size, color=size, color_continuous_scale=px.colors.diverging.RdYlGn_r,
                         custom_data=['Facility Name', year + ' Total reported direct emissions','Latitude','Longitude','Facility Id'], 
