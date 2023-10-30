@@ -22,12 +22,15 @@ df.dropna(inplace=True) #in this dataset this removes all facilities that don't 
 
 #removes the text at the beginning and correctly assigns the collumns
 df.columns = df.iloc[0]
-df = df[1:200]
-df = df.reset_index(drop=True)
+df = df[1:]
+
+
 
 df = df.sort_values(by="2021 Total reported direct emissions", ascending=False)
+df = df.reset_index(drop=True)
 
 facilities = df['Facility Id'].to_list()
+
 
 facility = "1005310"
 facility = st.text_input(label="Facility Id", value = "1005310")
@@ -44,9 +47,8 @@ else:
         emissions.append(df_facility.iloc[0][str(year) + ' Total reported direct emissions'])
         years.append(year)
     
-    print(emissions)
-    print(years)
 
     fig = px.bar(emissions, x=years, y=emissions, color=emissions, 
                  color_continuous_scale=px.colors.diverging.RdYlGn_r)
+        
     st.plotly_chart(fig)
