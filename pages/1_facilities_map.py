@@ -28,6 +28,8 @@ df = df.reset_index(drop=True)
 
 df = df.sort_values(by="2021 Total reported direct emissions", ascending=False)
 
+st.header("2021 Facilities")
+
 emissions=df["2021 Total reported direct emissions"].to_list()
 arr = np.array(emissions)
 arr = arr/10000

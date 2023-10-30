@@ -31,6 +31,12 @@ from langchain.document_loaders import PyPDFLoader
 import hashlib
 import openai
 
+
+st.write("Sorry! You aren't authorized to use this feature, which provides data that EcoAI\
+          will use to assist you.")
+
+face = """
+
 LOGGER = get_logger(__name__)
 
 PINECONE_API_KEY=os.environ['PINECONE_API_KEY']
@@ -85,5 +91,5 @@ if uploaded_file is not None:
 
     st.sidebar.success("Select a demo above.")
 
-    
+"""
 

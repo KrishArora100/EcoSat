@@ -21,6 +21,13 @@ import pinecone
 import streamlit as st
 import os
 
+
+st.write("Retrieval Augmented Generation AI")
+
+
+
+
+
 PINECONE_API_KEY=os.environ['PINECONE_API_KEY']
 PINECONE_API_ENV=os.environ['PINECONE_API_ENV']
 PINECONE_INDEX_NAME=os.environ['PINECONE_INDEX_NAME']
