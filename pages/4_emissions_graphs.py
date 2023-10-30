@@ -35,6 +35,10 @@ facilities = df['Facility Id'].to_list()
 facility = "1005310"
 facility = st.text_input(label="Facility Id", value = "1005310")
 
+y_range = "dynamic"
+y_range = st.selectbox(label="Y-Axis", options=('dynamic', 'fixed'),
+                    placeholder="dynamic")
+
 if (int(facility) not in facilities):
     st.caption("facility id entered is not a valid facility id!")
 
@@ -47,8 +51,20 @@ else:
         emissions.append(df_facility.iloc[0][str(year) + ' Total reported direct emissions'])
         years.append(year)
     
-
-    fig = px.bar(emissions, x=years, y=emissions, color=emissions, 
-                 color_continuous_scale=px.colors.diverging.RdYlGn_r)
+    if y_range == 'dynamic':
+        fig = px.bar(emissions, x=years, y=emissions, color=emissions, 
+                 color_continuous_scale=px.colors.diverging.RdYlGn_r,
+                labels={
+                     "x": "Year",
+                     "y": "Emissions(tons)",
+                 })
+    else:
+        fig = px.bar(emissions, x=years, y=emissions, color=emissions, 
+                 color_continuous_scale=px.colors.diverging.RdYlGn_r,
+                labels={
+                     "x": "Year",
+                     "y": "Emissions(tons)",
+                 },
+                 range_y=[0,25000000]),
         
     st.plotly_chart(fig)

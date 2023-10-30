@@ -17,15 +17,16 @@ import streamlit as st
 st.markdown("# Welcome to EcoSat")
 
 st.markdown("""
-            To access an AI Chatbot for information about GHG emissions and their dangers or about facility data, 
+            To access an AI Chatbot for information about greenhouse gas (GHG) emissions and their dangers or about facility data, 
             navigate to "retreival augmented chat"\n
             To view a basic map of facilities in 2021, go to "facilities map"\n
             To view a more interactive, customizable map of facilities, go to "interactive facilities map"\n
             To view specific trends of facilities, navigate to "emissions graphs"\n
             Please note that if you are not authorized to upload data into the AI model, that feature will be disabled\n
             Also please note that there is a maximum token limit to our chatbot of 4097 tokens. If you run into an error while chatting, 
-            click the rerun button found by clicking the three dots in the upper right corner. This will reset the app so you can chat again\n
-            For more information, ask our AI chatbot. Enjoy!
+            click the rerun button found by clicking the three dots in the upper right corner. This will reset the app so you can chat again. 
+            If there is still an error, try refreshing the app or trying at a later time\n
+            For more information, ask the AI chatbot. Enjoy!
              """)
 
 

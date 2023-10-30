@@ -8,7 +8,6 @@ from os import listdir
 df = pd.read_csv("1007227/1007227_2020.csv")
 
 dates = df["Timestamp"].to_list()
-print(dates)
 
 
 facility = "1007227"
@@ -20,7 +19,7 @@ year = st.selectbox(label="Year", options=('2020', '2011', '2012', '2013', '2014
                     placeholder="2020")
 
 timestamp = dates[0]
-timestamp = st.selectbox(label="Year", options=dates,
+timestamp = st.selectbox(label="Timestamp", options=dates,
                     placeholder=dates[0])
 
 if facility != "1007227":
@@ -31,20 +30,23 @@ if year != "2020":
 
  
 rgb_dir = "1007227/rgb_color_imgs/" + timestamp + ".jpg"
-smoke_seg_dir = "1007227/smoke_seg_imgs" + timestamp + ".jpg"
-smoke_contours_imgs = "1007227/smoke_contours_imgs" + timestamp + ".jpg"
+smoke_seg_dir = "1007227/smoke_seg_imgs/" + timestamp + ".jpg"
+smoke_contours_dir = "1007227/smoke_contours_imgs/" + timestamp + ".jpg"
 
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
    st.header("Actual Image")
-   st.image(rgb_dir)
+   st.image(rgb_dir, width=200)
 
 with col2:
    st.header("Smoke Plumes")
-   st.image(smoke_seg_dir)
+   st.image(smoke_seg_dir, width=213)
 
 with col3:
    st.header("Contours")
-   st.image(smoke_contours_imgs)
+   st.image(smoke_contours_dir, width=213)
+
+
+
