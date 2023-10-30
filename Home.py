@@ -14,15 +14,18 @@
 
 import streamlit as st
   
-st.markdown("# GHG Emissions")
+st.markdown("# Welcome to EcoSat")
 
 st.markdown("""
-             Remember to set the following in your .streamlit/secrets.toml file:
-             * OPENAI_API_KEY
-            * PINECONE_API_KEY, PINECONE_API_ENV, PINECONE_INDEX_NAME
-            * If using EMAIL, SENDGRID_API_KEY
-            * If using Dataframe, DATAFRAME_CSV as the URL for the corresponding CSV file 
-            * If using the Quiz App, QUIZ_CSV as the name of the CSV file with Quiz data....
+            To access our AI Chatbot for information about GHG emissions and their dangers or about facility data, 
+            navigate to "retreival augmented chat"\n
+            To view a basic map of facilities in 2021, go to "facilities map"\n
+            To view a more interactive, customizable map of facilities, go to "interactive facilities map"\n
+            To view specific trends of facilities, navigate to "emissions graphs"\n
+            Please note that if you are not authorized to upload data into the AI model, that feature will be disabled\n
+            Also please note that there is a maximum token limit to our chatbot of 4097 tokens. If you run into an error while chatting, 
+            click the rerun button found by clicking the three dots in the upper right corner. This will reset the app so you can chat again\n
+            For more information, ask our AI chatbot. Enjoy!
              """)
 
 

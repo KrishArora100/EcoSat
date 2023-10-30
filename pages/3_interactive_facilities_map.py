@@ -30,10 +30,16 @@ df.dropna(inplace=True) #in this dataset this removes all facilities that don't 
 
 #removes the text at the beginning and correctly assigns the collumns
 df.columns = df.iloc[0]
-df = df[1:int(num_facilities)]
-df = df.reset_index(drop=True)
+df = df[1:]
+
+
 
 df = df.sort_values(by="2021 Total reported direct emissions", ascending=False)
+df = df.reset_index(drop=True)
+df.to_excel("ghgp_data_by_year_formatted.xlsx")
+
+df = df[0:int(num_facilities)]
+
 
 size = df[year + ' Total reported direct emissions'].to_list()
 
