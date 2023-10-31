@@ -24,11 +24,12 @@ st.markdown("""
             To view a basic map of facilities in 2021, go to "facilities map"\n
             To view a more interactive, customizable map of facilities like the one below, go to "interactive facilities map"\n
             To view specific trends of facilities, navigate to "emissions graphs"\n
+            "Emissions estimations" is a work in progress. Currently it is restricted to one facility in one year\n
             Please note that if you are not authorized to upload data into EcoAI, that feature will be disabled\n
-            Also please note that there is a maximum token limit to our chatbot of 4096 tokens. If you run into an error while chatting, 
-            click the 'clear cache' button found by clicking the three dots in the upper right corner. This will reset the app so you can chat again. 
-            If there is still an error, try refreshing the app or trying at a later time\n
-            For more information, ask EcoAI. Enjoy!
+            Due to OpenAI's token limit of 8,192, EcoAI only knows around 100 of the most polluting facilities. In the future \
+            with a larger token limit(like gpt 4-32k) more facilities will be added to the chatbot's information pool.
+            If there are errors, try refreshing the app, clicking the \"rerun\" button, or trying at a later time\n
+            For more information, ask EcoAI: "Where should I start," or "What should I ask you." Enjoy!
              """)
 
 

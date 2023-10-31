@@ -48,5 +48,18 @@ with col3:
    st.header("Contours")
    st.image(smoke_contours_dir, width=213)
 
+area = 0
+for i in range(len(df)):
+   if df.loc[i]["Timestamp"] == timestamp:
+      area = round(df.loc[i]["smoke_plume_area"])
+
+avg_area_year = round(sum(df["smoke_plume_area"])/len(df))
+
+
+
+st.caption("Estimated smoke plume area for timestamp " + timestamp + ": " + str(area))
+st.caption("Estimated smoke plume area for " + str(year) + ": " + str(avg_area_year))
+st.caption("Estimated emissions for " + str(year) + ": 17232898")
+
 
 

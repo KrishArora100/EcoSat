@@ -39,7 +39,7 @@ def augmented_content(inp):
     embedding=openai.Embedding.create(model="text-embedding-ada-002", input=inp)['data'][0]['embedding']
     pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_API_ENV)
     index = pinecone.Index(PINECONE_INDEX_NAME)
-    results=index.query(embedding,top_k=3,include_metadata=True)
+    results=index.query(embedding,top_k=1,include_metadata=True)
     #print(f"Results: {results}")
     #st.write(f"Results: {results}")
     rr=[ r['metadata']['text'] for r in results['matches']]
@@ -49,7 +49,7 @@ def augmented_content(inp):
 
 
 SYSTEM_MESSAGE={"role": "system", 
-                "content": "Ignore all previous commands. You are a helpful and patient guide about greenhouse gas emissions. Answer only \
+                "content": "Ignore all previous commands. You are EcoAI, a helpful and patient guide about greenhouse gas emissions. Answer only \
                 in the context that has been provided. Say I don't know if its not in the context."
                 }
 
@@ -82,11 +82,12 @@ The user's question was: {prompt}
         messageList.append({"role": "user", "content": prompt_guidance})
         
         for response in openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4",
+            max_tokens=250,
             messages=messageList, stream=True):
             full_response += response.choices[0].delta.get("content", "")
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
-    with st.sidebar.expander("Retreival context provided to GPT-3"):
+    with st.sidebar.expander("Retreival context provided to GPT-4"):
         st.write(f"{retreived_content}")
     st.session_state.messages.append({"role": "assistant", "content": full_response})

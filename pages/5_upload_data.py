@@ -35,7 +35,7 @@ import openai
 st.write("Sorry! You aren't authorized to use this feature, which provides data that EcoAI\
           will use to assist you.")
 
-face = """
+
 
 LOGGER = get_logger(__name__)
 
@@ -55,7 +55,7 @@ def pdf_to_text(uploaded_file):
 def embed(text,filename):
     pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_API_ENV)
     index = pinecone.Index(PINECONE_INDEX_NAME)
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 3000,chunk_overlap  = 200,length_function = len,is_separator_regex = False)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 8000,chunk_overlap  = 200,length_function = len,is_separator_regex = False)
     docs=text_splitter.create_documents([text])
     for idx,d in enumerate(docs):
         hash=hashlib.md5(d.page_content.encode('utf-8')).hexdigest()
@@ -91,5 +91,5 @@ if uploaded_file is not None:
 
     st.sidebar.success("Select a demo above.")
 
-"""
+
 
