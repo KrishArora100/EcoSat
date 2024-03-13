@@ -6,7 +6,7 @@ streamlit
 PyPDF2
 pinecone-client
 langchain
-openai
+openai==0.28
 sendgrid
 markdown
 markdown
