@@ -16,9 +16,7 @@ import time
 
 import numpy as np
 
-from openai import OpenAI
-
-client = OpenAI()
+import openai
 import pinecone
 import streamlit as st
 import os
@@ -38,7 +36,8 @@ def augmented_content(inp):
     # Create the embedding using OpenAI keys
     # Do similarity search using Pinecone
     # Return the top 5 results
-    embedding=client.embeddings.create(model="text-embedding-ada-002", input=inp)['data'][0]['embedding']
+    #embedding=openai.Embedding.create(model="text-embedding-ada-002", input=inp)['data'][0]['embedding']
+    embedding=openai.Embedding.create(model="text-embedding-ada-002", input=inp).data[0].embedding
     pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_API_ENV)
     index = pinecone.Index(PINECONE_INDEX_NAME)
     results=index.query(embedding,top_k=1,include_metadata=True)
@@ -83,9 +82,10 @@ The user's question was: {prompt}
                       for m in st.session_state.messages]
         messageList.append({"role": "user", "content": prompt_guidance})
         
-        for response in client.chat.completions.create(model="gpt-4",
-        max_tokens=250,
-        messages=messageList, stream=True):
+        for response in openai.ChatCompletion.create(
+            model="gpt-4",
+            max_tokens=250,
+            messages=messageList, stream=True):
             full_response += response.choices[0].delta.get("content", "")
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
