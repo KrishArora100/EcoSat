@@ -17,9 +17,9 @@ import time
 import numpy as np
 
 import openai
-import pinecone
 import streamlit as st
 import os
+from pinecone import Pinecone, ServerlessSpec
 
 
 st.write("Retrieval Augmented Generation AI")
@@ -38,7 +38,13 @@ def augmented_content(inp):
     # Return the top 5 results
     #embedding=openai.Embedding.create(model="text-embedding-ada-002", input=inp)['data'][0]['embedding']
     embedding=openai.Embedding.create(model="text-embedding-ada-002", input=inp).data[0].embedding
-    pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_API_ENV)
+    pinecone = Pinecone(
+
+        api_key=PINECONE_API_KEY,
+        environment=PINECONE_API_ENV
+    )
+    
+    #pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_API_ENV)
     index = pinecone.Index(PINECONE_INDEX_NAME)
     results=index.query(embedding,top_k=1,include_metadata=True)
     #print(f"Results: {results}")
