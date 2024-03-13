@@ -29,9 +29,7 @@ import pinecone
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import PyPDFLoader
 import hashlib
-from openai import OpenAI
-
-client = OpenAI()
+import openai
 
 
 st.write("Sorry! You aren't authorized to use this feature, which provides data that EcoAI\
@@ -61,7 +59,7 @@ def embed(text,filename):
     docs=text_splitter.create_documents([text])
     for idx,d in enumerate(docs):
         hash=hashlib.md5(d.page_content.encode('utf-8')).hexdigest()
-        embedding=client.embeddings.create(model="text-embedding-ada-002", input=d.page_content)['data'][0]['embedding']
+        embedding=openai.Embedding.create(model="text-embedding-ada-002", input=d.page_content)['data'][0]['embedding']
         metadata={"hash":hash,"text":d.page_content,"index":idx,"model":"text-embedding-ada-003","docname":filename}
         index.upsert([(hash,embedding,metadata)])
     return
