@@ -4,7 +4,7 @@ pandas
 pydeck
 streamlit
 PyPDF2
-pinecone-client
+pinecone-client==2.2.4
 langchain
 openai==0.28
 sendgrid
