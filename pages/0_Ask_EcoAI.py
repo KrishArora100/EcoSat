@@ -19,21 +19,23 @@ import numpy as np
 import openai
 import streamlit as st
 import os
+from dotenv import load_dotenv
 from pinecone import Pinecone
 
 
 st.write("Retrieval Augmented Generation AI")
 
 
-
+load_dotenv()
 
 
 PINECONE_API_KEY=os.environ['PINECONE_API_KEY']
 PINECONE_API_ENV=os.environ['PINECONE_API_ENV']
 PINECONE_INDEX_NAME=os.environ['PINECONE_INDEX_NAME']
-OPENAI_API_KEY=os.environ['OPENAI_API_KEY']
+NEW_OPENAI_API_KEY=os.environ['NEW_OPENAI_API_KEY']
 
 
+openai.api_key = NEW_OPENAI_API_KEY
 
 def augmented_content(inp):
     # Create the embedding using OpenAI keys
