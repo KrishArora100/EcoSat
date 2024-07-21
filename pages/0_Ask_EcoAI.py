@@ -19,7 +19,7 @@ import numpy as np
 import openai
 import streamlit as st
 import os
-import pinecone
+from pinecone import Pinecone
 
 
 st.write("Retrieval Augmented Generation AI")
@@ -31,6 +31,9 @@ st.write("Retrieval Augmented Generation AI")
 PINECONE_API_KEY=os.environ['PINECONE_API_KEY']
 PINECONE_API_ENV=os.environ['PINECONE_API_ENV']
 PINECONE_INDEX_NAME=os.environ['PINECONE_INDEX_NAME']
+OPENAI_API_KEY=os.environ['OPENAI_API_KEY']
+
+
 
 def augmented_content(inp):
     # Create the embedding using OpenAI keys
@@ -39,9 +42,9 @@ def augmented_content(inp):
     #embedding=openai.Embedding.create(model="text-embedding-ada-002", input=inp)['data'][0]['embedding']
     embedding=openai.Embedding.create(model="text-embedding-ada-002", input=inp).data[0].embedding
     
-    pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_API_ENV)
+    pinecone = Pinecone(api_key=PINECONE_API_KEY, environment=PINECONE_API_ENV)
     index = pinecone.Index(PINECONE_INDEX_NAME)
-    results=index.query(embedding,top_k=1,include_metadata=True)
+    results=index.query(vector=embedding,top_k=2,include_metadata=True)
     #print(f"Results: {results}")
     #st.write(f"Results: {results}")
     rr=[ r['metadata']['text'] for r in results['matches']]
@@ -52,7 +55,12 @@ def augmented_content(inp):
 
 SYSTEM_MESSAGE={"role": "system", 
                 "content": "Ignore all previous commands. You are EcoAI, a helpful and patient guide about greenhouse gas emissions. Answer only \
-                in the context that has been provided. Say I don't know if its not in the context."
+                in the context that has been provided. Say I don't know if its not in the context. You have been given data about US facility \
+                emissions since 2021 in the form of text with commas separating the values. You know the columns of this dataset. If a user asks \
+                for info that you can answer by looking at the dataset, \
+                answer the question. If a user asks you to perform aggregations on the data provided, do it. Be confident, you can answer questions \
+                about facility data. Only say I don't know if the user asks something completely unreleated to climate emissions and US facility \
+                emissions data."
                 }
 
 if "messages" not in st.session_state:

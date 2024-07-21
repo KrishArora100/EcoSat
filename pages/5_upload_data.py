@@ -25,18 +25,22 @@ import os
 import streamlit as st
 from streamlit.logger import get_logger
 import PyPDF2
-import pinecone
+from pinecone import Pinecone
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import PyPDFLoader
 import hashlib
 import openai
+
+from dotenv import load_dotenv, dotenv_values 
+# loading variables from .env file
+load_dotenv() 
 
 
 st.write("Sorry! You aren't authorized to use this feature, which provides data that EcoAI\
           will use to assist you.")
 
 
-
+_="""
 LOGGER = get_logger(__name__)
 
 PINECONE_API_KEY=os.environ['PINECONE_API_KEY']
@@ -53,7 +57,7 @@ def pdf_to_text(uploaded_file):
     return text
 
 def embed(text,filename):
-    pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_API_ENV)
+    pinecone = Pinecone(api_key=PINECONE_API_KEY, environment=PINECONE_API_ENV)
     index = pinecone.Index(PINECONE_INDEX_NAME)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size = 8000,chunk_overlap  = 200,length_function = len,is_separator_regex = False)
     docs=text_splitter.create_documents([text])
@@ -92,4 +96,4 @@ if uploaded_file is not None:
     st.sidebar.success("Select a demo above.")
 
 
-
+"""
