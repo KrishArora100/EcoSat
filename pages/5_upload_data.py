@@ -30,14 +30,17 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import PyPDFLoader
 import hashlib
 import openai
+from dotenv import load_dotenv
 
 
 st.write("Sorry! You aren't authorized to use this feature, which provides data that EcoAI\
           will use to assist you.")
 
 
+#Commented since not needed anymore
+_="""LOGGER = get_logger(__name__)
 
-LOGGER = get_logger(__name__)
+load_dotenv()
 
 PINECONE_API_KEY=os.environ['PINECONE_API_KEY']
 PINECONE_API_ENV=os.environ['PINECONE_API_ENV']
@@ -90,6 +93,6 @@ if uploaded_file is not None:
     st.write("# Welcome to Streamlit! 👋")
 
     st.sidebar.success("Select a demo above.")
-
+"""
 
 
