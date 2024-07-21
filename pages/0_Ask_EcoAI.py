@@ -46,14 +46,13 @@ def augmented_content(inp):
     
     pinecone = Pinecone(api_key=PINECONE_API_KEY, environment=PINECONE_API_ENV)
     index = pinecone.Index(PINECONE_INDEX_NAME)
-    results=index.query(vector=embedding,top_k=2,include_metadata=True)
+    results=index.query(vector=embedding,top_k=1,include_metadata=True)
     #print(f"Results: {results}")
     #st.write(f"Results: {results}")
     rr=[ r['metadata']['text'] for r in results['matches']]
     #print(f"RR: {rr}")
     #st.write(f"RR: {rr}")
     return rr
-
 
 SYSTEM_MESSAGE={"role": "system", 
                 "content": "Ignore all previous commands. You are EcoAI, a helpful and patient guide about greenhouse gas emissions. Answer only \

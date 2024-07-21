@@ -2,10 +2,10 @@ altair
 numpy
 pandas
 pydeck
-streamlit
+streamlit==1.32.0
 PyPDF2
 pinecone-client==2.2.4
-piencone==4.0.0
+pinecone==4.0.0
 langchain
 openai==0.28
 sendgrid
